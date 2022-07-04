@@ -6,7 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link as a } from 'react-router-dom';
+import { Link as a, NavLink } from 'react-router-dom';
 
 const Navigation = () => {
     return (
@@ -27,7 +27,9 @@ const Navigation = () => {
           </Typography>
           {/* <Link to='/appointment'><Button color="inherit">Appointment</Button></Link> */}
           <a href='/appointment'><Button color="inherit">Appointment</Button></a>
-          <Button color="inherit">Login</Button>
+          {/* <NavLink to='/login'><Button color="inherit">Login</Button></NavLink> */}
+          <a href='/login'><Button color="inherit">Login</Button></a>
+          
         </Toolbar>
       </AppBar>
     </Box>
