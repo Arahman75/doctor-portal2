@@ -1,4 +1,4 @@
-import { Button, CircularProgress, Grid, TextField, Typography } from '@mui/material';
+import { Alert, Button, CircularProgress, Grid, TextField, Typography } from '@mui/material';
 import { Container } from '@mui/system';
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
@@ -8,7 +8,8 @@ import login from '../../../images/login.png';
 const Register = () => {
     const [loginData, setLoginData] = useState({});
 
-    const { registerUser, isLoading } = useAuth();
+    const {user, registerUser, isLoading, authError } = useAuth();
+    
 
     const handleOnChange = e => {
         const field = e.target.name;
@@ -35,6 +36,14 @@ const Register = () => {
                         Register
                     </Typography>
                    {!isLoading && <form onSubmit={handleLoginSubmit}>
+                   <TextField
+                            sx={{ width: '75%', m: 1 }}
+                            id="standard-basic"
+                            label="Your Name"
+                            name='name'
+                            onChange={handleOnChange}
+                            variant="standard" />
+                        <br></br>
                         <TextField
                             sx={{ width: '75%', m: 1 }}
                             id="standard-basic"
@@ -44,6 +53,7 @@ const Register = () => {
                             onChange={handleOnChange}
                             variant="standard" />
                         <br></br>
+                       
                         <TextField
                             sx={{ width: '75%', m: 1 }}
                             id="standard-basic"
@@ -68,6 +78,12 @@ const Register = () => {
                     </form>}
                     {
                         isLoading && <CircularProgress />
+                    }
+                    {
+                        user?.email && <Alert severity="success">Create user successfully!</Alert>
+                    }
+                    {
+                        authError && <Alert severity="error">{authError}</Alert>
                     }
                 </Grid>
                 <Grid item xs={12} md={6}>
